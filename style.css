@@ -1,24 +1,23 @@
 body {
-  margin: 0;
+  background: url('c:\Users\patra\AppData\Local\Packages\5319275A.WhatsAppDesktop_cv1g1gvanyjgm\TempState\30893A5EB454815E3BF4A3406B1B80C0\WhatsApp Image 2025-08-06 at 01.13.14_3af04f7a.jpg') no-repeat center center fixed;
+  background-size: cover;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to top right, #ffecd2, #fcb69f);
   min-height: 100vh;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
-  padding: 20px; /* Add this */
-  box-sizing: border-box; /* Important for layout */
+  padding: 20px;
+  box-sizing: border-box;
+  color: #3b1f1f;
 }
 
 .container, .greeting-container {
-  background: white;
-  padding: 30px;
+  background: rgba(255, 255, 255, 0.85); /* soft white layer for readability */
   border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
-  max-width: 420px;
-  width: 100%;
-  box-sizing: border-box;
+  padding: 30px;
+  max-width: 90%;
+  box-shadow: 0 4px 30px rgba(0,0,0,0.2);
 }
 
 h1 {
