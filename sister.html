@@ -1,18 +1,136 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>To My Sister ❤</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>To My Sister ❤</title>
+    <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-  <div class="greeting-container">
-    <h1>To My Dearest Sister 💌</h1>
-    <p>From sharing chocolates to secrets, from silly fights to silent support, you’ve always been more than a sister — you’ve been my best friend, my teacher, and my superhero.</p>
-    <p>This Raksha Bandhan, I just want to say — I’m blessed to have you. 💫</p>
-    <p><i>“Sometimes we fight, sometimes we smile, but in every phase of life, you've been my favorite reason to smile.”</i></p>
-    <button onclick="window.location.href='index.html'">Back to Home</button>
-  </div>
+    <div class="greeting-container">
+        <h1>To My Dearest Sister 💌</h1>
+        <p>
+            Once, I had no idea what true bonding meant…<br><br>
+            Until you came into my life and showed me the purest form of love that a sister can give. You were not just
+            a best friend — you became my sister from another mother, my secret keeper, my partner in every mischief, and my strongest
+            support… and only you truly deserve that place in my life.<br><br>
+            I know the love between a brother and sister doesn’t need any celebration or declaration, but these are just
+            my heart’s words. We share countless memories — laughter, silly fights, care, and unspoken feelings — that
+            no one else could ever understand.<br><br>
+            You are not just my sister; you are my strength, my family, my forever friend…<br>
+            For as long as I live, you will always hold a special place in my heart.<br><br>
+            <strong style="color:#d6336c; font-size: 1.3em;">Happy Raksha Bandhan… to the most amazing sister I could
+                ever ask for! 💖</strong>
+        </p>
+        <button onclick="window.location.href='index.html'">Back to Home</button>
+    </div>
+
+    <!-- Music button placed at the bottom -->
+    <audio id="bgMusic" loop>
+        <source src="rakhi.mp3" type="audio/mpeg">
+    </audio>
+    <button id="musicBtn" onclick="toggleMusic()">🎵 Play Music</button>
+
+    <script>
+        // ✅ Music toggle logic
+        const audio = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+
+        // Resume music if it was already playing
+        if (sessionStorage.getItem("music") === "playing") {
+            audio.play().catch(() => {
+                // Autoplay blocked (common on Android)
+                console.log("Autoplay blocked, waiting for user interaction");
+            });
+            musicBtn.textContent = "🔇 Pause Music";
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                sessionStorage.setItem("music", "playing");
+                musicBtn.textContent = "🔇 Pause Music";
+            } else {
+                audio.pause();
+                sessionStorage.setItem("music", "paused");
+                musicBtn.textContent = "🎵 Play Music";
+            }
+        }
+
+        // ✅ Extra Fix for Android (tap anywhere to resume if blocked)
+        document.body.addEventListener('click', () => {
+            if (sessionStorage.getItem("music") === "playing" && audio.paused) {
+                audio.play().catch(err => console.log("Play failed:", err));
+                musicBtn.textContent = "🔇 Pause Music";
+            }
+        });
+    </script>
+
+    <style>
+        body {
+            background-color: #f0f8ff;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        .greeting-container {
+            background: rgba(255, 255, 255, 0.3);
+            /* more transparent */
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 600px;
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(10px);
+            /* blur background behind it */
+            -webkit-backdrop-filter: blur(10px);
+            /* for Safari */
+        }
+
+        h1 {
+            color: #ff6347;
+            /* Tomato color */
+        }
+
+        p {
+            line-height: 1.6;
+        }
+
+        button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            background-color: #ff6347;
+            /* Tomato color */
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #e55347;
+            /* Darker tomato on hover */
+        }
+
+        #musicBtn {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #fff3cd;
+            border: 2px solid #ffbf00;
+            border-radius: 50px;
+            padding: 10px 15px;
+            font-size: 18px;
+            cursor: pointer;
+            z-index: 1000;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        #musicBtn:hover {
+            background-color: #ffe082;
+        }
+    </style>
 </body>
+
 </html>

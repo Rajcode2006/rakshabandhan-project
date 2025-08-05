@@ -1,27 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>RakhiLoveWave 💛</title>
-  <link rel="stylesheet" href="style.css"/>
-</head>
-<body>
-  <div class="container">
-    <h1>🎀 Create Your Raksha Bandhan Wish 🎀</h1>
-    <input type="text" id="nameInput" placeholder="Enter a name (e.g., Ananya)" />
-    <button onclick="createGreeting()">Generate Greeting</button>
-  </div>
 
-  <script>
-    function createGreeting() {
-      const name = document.getElementById("nameInput").value.trim();
-      if (name === "") {
-        alert("Please enter a name!");
-        return;
-      }
-      window.location.href = `greeting.html?name=${encodeURIComponent(name)}`;
-    }
-  </script>
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>RakhiLoveWave 💛</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <div class="container">
+        <h1>🎀 Create Your Raksha Bandhan Wish 🎀</h1>
+        <input type="text" id="nameInput" placeholder="Enter a name (e.g., Ananya)" />
+        <button onclick="createGreeting()">Generate Greeting</button>
+    </div>
+
+    <!-- ✅ Music controls -->
+    <audio id="bgMusic" loop>
+        <source src="rakhi.mp3" type="audio/mpeg">
+    </audio>
+    <button id="musicBtn" onclick="toggleMusic()">🎵 Play Music</button>
+
+    <script>
+        function createGreeting() {
+            const name = document.getElementById("nameInput").value.trim();
+            if (name === "") {
+                alert("Please enter a name!");
+                return;
+            }
+            window.location.href = `greeting.html?name=${encodeURIComponent(name)}`;
+        }
+
+        // ✅ Music toggle logic
+        const audio = document.getElementById("bgMusic");
+        const musicBtn = document.getElementById("musicBtn");
+
+        // Resume music if it was already playing
+        if (sessionStorage.getItem("music") === "playing") {
+            audio.play().catch(() => {
+                // Autoplay blocked (common on Android)
+                console.log("Autoplay blocked, waiting for user interaction");
+            });
+            musicBtn.textContent = "🔇 Pause Music";
+        }
+
+        function toggleMusic() {
+            if (audio.paused) {
+                audio.play();
+                sessionStorage.setItem("music", "playing");
+                musicBtn.textContent = "🔇 Pause Music";
+            } else {
+                audio.pause();
+                sessionStorage.setItem("music", "paused");
+                musicBtn.textContent = "🎵 Play Music";
+            }
+        }
+
+        // ✅ Extra Fix for Android (tap anywhere to resume if blocked)
+        document.body.addEventListener('click', () => {
+            if (sessionStorage.getItem("music") === "playing" && audio.paused) {
+                audio.play().catch(err => console.log("Play failed:", err));
+                musicBtn.textContent = "🔇 Pause Music";
+            }
+        });
+    </script>
 </body>
+
 </html>
