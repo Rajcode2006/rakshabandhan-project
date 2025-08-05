@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Happy Raksha Bandhan!</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="greeting-container">
+    <h1>Happy Raksha Bandhan, <span id="receiverName"></span>! 🎉</h1>
+    <p>May this thread of love always keep us connected. 🪢</p>
+    <button onclick="shareOnWhatsApp()">📤 Share on WhatsApp</button>
+    <button onclick="goHome()">🎁 Create Your Own</button>
+    <button onclick="document.querySelector('audio').play()">▶ Play Music</button>
+    <button onclick="window.location.href='sister.html'">💌 Read My Message</button>
+  </div>
+
+  <audio autoplay loop>
+    <source src="rakhi.mp3" type="audio/mpeg">
+  </audio>
+
+  <script>
+    // Extract name from URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name') || "Dear";
+
+    document.getElementById("receiverName").textContent = name;
+
+    function shareOnWhatsApp() {
+      const link = window.location.href;
+      const message = `🌼 Happy Raksha Bandhan! A wish just for you: ${link}`;
+      window.open(`https://wa.me/?text=${encodeURIComponent(message)}`, '_blank');
+    }
+
+    function goHome() {
+      window.location.href = "index.html";
+    }
+
+    // Confetti Effect (Simple)
+    for (let i = 0; i < 30; i++) {
+      let confetti = document.createElement("div");
+      confetti.className = "confetti";
+      confetti.style.left = Math.random() * 100 + "vw";
+      confetti.style.animationDelay = Math.random() * 2 + "s";
+      document.body.appendChild(confetti);
+    }
+  </script>
+</body>
+</html>

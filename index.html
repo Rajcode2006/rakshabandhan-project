@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>RakhiLoveWave 💛</title>
+  <link rel="stylesheet" href="style.css"/>
+</head>
+<body>
+  <div class="container">
+    <h1>🎀 Create Your Raksha Bandhan Wish 🎀</h1>
+    <input type="text" id="nameInput" placeholder="Enter a name (e.g., Ananya)" />
+    <button onclick="createGreeting()">Generate Greeting</button>
+  </div>
+
+  <script>
+    function createGreeting() {
+      const name = document.getElementById("nameInput").value.trim();
+      if (name === "") {
+        alert("Please enter a name!");
+        return;
+      }
+      window.location.href = `greeting.html?name=${encodeURIComponent(name)}`;
+    }
+  </script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+body {
+  margin: 0;
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(to top right, #ffecd2, #fcb69f);
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 20px; /* Add this */
+  box-sizing: border-box; /* Important for layout */
+}
+
+.container, .greeting-container {
+  background: white;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.2);
+  max-width: 420px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+h1 {
+  color: #d6336c;
+}
+
+input {
+  padding: 12px;
+  width: 80%;
+  margin: 15px 0;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+button {
+  padding: 12px 20px;
+  font-size: 16px;
+  margin: 10px;
+  border: none;
+  background-color: #ff758c;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #ff5e7c;
+}
+
+/* Confetti style */
+.confetti {
+  width: 10px;
+  height: 10px;
+  background-color: #ffc107;
+  position: absolute;
+  top: 0;
+  animation: fall 3s linear infinite;
+  opacity: 0.8;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-100px) rotate(0deg); }
+  100% { transform: translateY(100vh) rotate(360deg); }
+}
